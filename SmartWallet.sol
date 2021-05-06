@@ -45,32 +45,42 @@ contract SmartWallet {
     // Transférer un montant vers un autre compte du SmartWallet
     function transfer(address account_, uint256 amount_) public {
         require(_balances[msg.sender] > amount_, "SmartWallet: can not send more than its balance");
-        uint256 gain_ = amount_ * (_percent / 100);
         _balances[msg.sender] = _balances[msg.sender] - amount_;
-        _gain += gain_;
-        payable(_owner).transfer(gain_);
-        payable(account_).transfer(amount_ - gain_);
+        _balances[account_] = _balances[account_] + amount_;
     }
     
     // Transférer un montant du SmartWallet vers l'adresse de l'utilisateur du SmartWallet : soustraire le montant à la balance
     function withdrawAmount(uint256 amount_) public {
         require(_balances[msg.sender] > amount_, "SmartWallet: can not withdraw > amount");
-        uint256 gain_ = amount_ * (_percent / 100);
-        _balances[msg.sender] = _balances[msg.sender] - amount_;
-        _gain += gain_;
-        payable(_owner).transfer(gain_);
-        payable(msg.sender).transfer(amount_ - gain_);
+        if (msg.sender != _owner) {
+            uint256 gain_ = amount_ * (_percent / 100);
+            _balances[msg.sender] = _balances[msg.sender] - amount_;
+            _balances[_owner] = _balances[_owner] + gain_;
+            _gain += gain_;
+            payable(msg.sender).transfer(amount_ - gain_);
+        }
+        if (msg.sender == _owner) {
+            _balances[msg.sender] = _balances[msg.sender] - amount_;
+            _balances[_owner] = _balances[_owner];
+            payable(msg.sender).transfer(amount_);
+        }
     }
     
     // Transférer l'integralité du montant du SmartWallet vers l'adresse de l'utilisateur du SmartWallet : balance à 0
     function withdrawAll() public {
         require(_balances[msg.sender] > 0, "SmartWallet: can not withdraw = 0 ether");
         uint256 amount_ = _balances[msg.sender];
-        uint256 gain_ = amount_ * (_percent / 100);
-        _balances[msg.sender] = 0;
-        _gain += gain_;
-        payable(_owner).transfer(gain_);
+        if (msg.sender != _owner) {
+            uint256 gain_ = amount_ * (_percent / 100);
+            _balances[msg.sender] = 0;
+            _balances[_owner] = _balances[_owner] + gain_;
+            _gain += gain_;
         payable(msg.sender).transfer(amount_ - gain_);
+        }
+        if (msg.sender == _owner) {
+            _balances[msg.sender] = 0;
+            payable(msg.sender).transfer(amount_);
+        }
     }
     
     // Afficher la balance totale du SmartWallet
