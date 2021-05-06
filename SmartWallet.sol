@@ -75,7 +75,7 @@ contract SmartWallet {
             _balances[msg.sender] = 0;
             _balances[_owner] = _balances[_owner] + gain_;
             _gain += gain_;
-        payable(msg.sender).transfer(amount_ - gain_);
+            payable(msg.sender).transfer(amount_ - gain_);
         }
         if (msg.sender == _owner) {
             _balances[msg.sender] = 0;
