@@ -30,7 +30,6 @@ contract CheckOdd is Ownable {
     // functions
     function add(uint256 nb1_, uint256 nb2_) public returns (uint256) {
         require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
-        _deposit(owner_, msg.value);
         _profit += msg.value;
         _nbOp += 1;
         return result = nb1_ + nb2_; 
@@ -38,7 +37,6 @@ contract CheckOdd is Ownable {
     }
     function sub(uint256 nb1_, uint256 nb2_) public returns (uint256) {
         require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
-        _deposit(owner_, msg.value);
         _profit += msg.value;
         _nbOp += 1;
         return result = nb1_ - nb2_; 
@@ -46,7 +44,6 @@ contract CheckOdd is Ownable {
     }
     function mul(uint256 nb1_, uint256 nb2_) public returns (uint256) {
         require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
-        _deposit(owner_, msg.value);
         _profit += msg.value;
         _nbOp += 1;
         return result = nb1_ * nb2_; 
@@ -54,7 +51,6 @@ contract CheckOdd is Ownable {
     }
     function div(uint256 nb1_, uint256 nb2_) public returns (uint256) {
         require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
-        _deposit(owner_, msg.value);
         _profit += msg.value;
         _nbOp += 1;
         return result = nb1_ / nb2_; 
@@ -62,7 +58,6 @@ contract CheckOdd is Ownable {
     }
     function mod(uint256 nb1_, uint256 nb2_) public returns (uint256) {
         require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
-        _deposit(owner_, msg.value);
         _profit += msg.value;
         _nbOp += 1;
         return result = nb1_ % nb2_; 
