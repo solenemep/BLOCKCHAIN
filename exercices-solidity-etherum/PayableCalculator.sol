@@ -25,6 +25,7 @@ contract CheckOdd is Ownable {
     }
 
     // modifiers
+    // Le modifier onlyOwner a été défini dans le smart contract Ownable
 
     // functions
     function add(uint256 nb1_, uint256 nb2_) public returns (uint256) {
