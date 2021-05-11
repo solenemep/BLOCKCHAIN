@@ -51,6 +51,7 @@ contract CheckOdd is Ownable {
     }
     function div(int256 nb1, int256 nb2) public payable returns (int256) {
         require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
+        require(nb2 != 0, "PayableCalculator: cannot divide by zero");
         _profit += msg.value;
         _nbOp += 1;
         return result = nb1 / nb2; 
