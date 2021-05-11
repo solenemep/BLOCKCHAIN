@@ -28,39 +28,39 @@ contract CheckOdd is Ownable {
     // Le modifier onlyOwner a été défini dans le smart contract Ownable
 
     // functions
-    function add(int256 nb1_, int256 nb2_) public returns (int256) {
+    function add(int256 nb1, int256 nb2) public payable returns (int256) {
         require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
         _profit += msg.value;
         _nbOp += 1;
-        return result = nb1_ + nb2_; 
+        return result = nb1 + nb2; 
         emit Calculated(result);
     }
-    function sub(int256 nb1_, int256 nb2_) public returns (int256) {
+    function sub(int256 nb1, int256 nb2) public payable returns (int256) {
         require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
         _profit += msg.value;
         _nbOp += 1;
-        return result = nb1_ - nb2_; 
+        return result = nb1 - nb2; 
         emit Calculated(result);
     }
-    function mul(int256 nb1_, int256 nb2_) public returns (int256) {
+    function mul(int256 nb1, int256 nb2) public payable returns (int256) {
         require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
         _profit += msg.value;
         _nbOp += 1;
-        return result = nb1_ * nb2_; 
+        return result = nb1 * nb2; 
         emit Calculated(result);
     }
-    function div(int256 nb1_, int256 nb2_) public returns (int256) {
+    function div(int256 nb1, int256 nb2) public payable returns (int256) {
         require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
         _profit += msg.value;
         _nbOp += 1;
-        return result = nb1_ / nb2_; 
+        return result = nb1 / nb2; 
         emit Calculated(result);
     }
-    function mod(int256 nb1_, int256 nb2_) public returns (int256) {
+    function mod(int256 nb1, int256 nb2) public payable returns (int256) {
         require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
         _profit += msg.value;
         _nbOp += 1;
-        return result = nb1_ % nb2_; 
+        return result = nb1 % nb2; 
         emit Calculated(result);
     }
     
