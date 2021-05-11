@@ -16,7 +16,7 @@ contract CheckOdd is Ownable {
     uint256 private _nbOp;
 
     // events
-    event Calculated(uint256 result);
+    event Calculated(int256 result);
     event Withdrew(address indexed recipient, uint256);
 
     // constructor
@@ -28,35 +28,35 @@ contract CheckOdd is Ownable {
     // Le modifier onlyOwner a été défini dans le smart contract Ownable
 
     // functions
-    function add(uint256 nb1_, uint256 nb2_) public returns (uint256) {
+    function add(int256 nb1_, int256 nb2_) public returns (int256) {
         require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
         _profit += msg.value;
         _nbOp += 1;
         return result = nb1_ + nb2_; 
         emit Calculated(result);
     }
-    function sub(uint256 nb1_, uint256 nb2_) public returns (uint256) {
+    function sub(int256 nb1_, int256 nb2_) public returns (int256) {
         require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
         _profit += msg.value;
         _nbOp += 1;
         return result = nb1_ - nb2_; 
         emit Calculated(result);
     }
-    function mul(uint256 nb1_, uint256 nb2_) public returns (uint256) {
+    function mul(int256 nb1_, int256 nb2_) public returns (int256) {
         require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
         _profit += msg.value;
         _nbOp += 1;
         return result = nb1_ * nb2_; 
         emit Calculated(result);
     }
-    function div(uint256 nb1_, uint256 nb2_) public returns (uint256) {
+    function div(int256 nb1_, int256 nb2_) public returns (int256) {
         require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
         _profit += msg.value;
         _nbOp += 1;
         return result = nb1_ / nb2_; 
         emit Calculated(result);
     }
-    function mod(uint256 nb1_, uint256 nb2_) public returns (uint256) {
+    function mod(int256 nb1_, int256 nb2_) public returns (int256) {
         require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
         _profit += msg.value;
         _nbOp += 1;
