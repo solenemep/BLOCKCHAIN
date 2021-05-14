@@ -13,7 +13,7 @@ contract CheckOdd is Ownable {
     address private _owner; 
     uint256 public result;
     uint256 private _profit;
-    uint256 private _nbOp;
+    uint256 private _counter;
 
     // events
     event Calculated(int256 result);
@@ -29,38 +29,38 @@ contract CheckOdd is Ownable {
 
     // functions
     function add(int256 nb1, int256 nb2) public payable returns (int256) {
-        require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
+        require(msg.value == 1e15 , "PayableCalculator: Fees are 1 finney");
         _profit += msg.value;
-        _nbOp += 1;
+        _counter += 1;
         return result = nb1 + nb2; 
         emit Calculated(result);
     }
     function sub(int256 nb1, int256 nb2) public payable returns (int256) {
-        require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
+        require(msg.value == 1e15 , "PayableCalculator: Fees are 1 finney");
         _profit += msg.value;
-        _nbOp += 1;
+        _counter += 1;
         return result = nb1 - nb2; 
         emit Calculated(result);
     }
     function mul(int256 nb1, int256 nb2) public payable returns (int256) {
-        require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
+        require(msg.value == 1e15 , "PayableCalculator: Fees are 1 finney");
         _profit += msg.value;
-        _nbOp += 1;
+        _counter += 1;
         return result = nb1 * nb2; 
         emit Calculated(result);
     }
     function div(int256 nb1, int256 nb2) public payable returns (int256) {
-        require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
+        require(msg.value == 1e15 , "PayableCalculator: Fees are 1 finney");
         require(nb2 != 0, "PayableCalculator: cannot divide by zero");
         _profit += msg.value;
-        _nbOp += 1;
+        _counter += 1;
         return result = nb1 / nb2; 
         emit Calculated(result);
     }
     function mod(int256 nb1, int256 nb2) public payable returns (int256) {
-        require(msg.value == 0.001 , "PayableCalculator: Fees are 1 finney");
+        require(msg.value == 1e15 , "PayableCalculator: Fees are 1 finney");
         _profit += msg.value;
-        _nbOp += 1;
+        _counter += 1;
         return result = nb1 % nb2; 
         emit Calculated(result);
     }

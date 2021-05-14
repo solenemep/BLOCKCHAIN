@@ -11,9 +11,11 @@ contract SimpleStorage {
     // events
 
     // constructor
+    /*
     constructor(uint256 storedData_) {
         _storedData = storedData_;
     }
+    */
 
     // modifiers
 
