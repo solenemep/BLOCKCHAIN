@@ -51,3 +51,5 @@ contract Birthday {
         require(_birthday >= block.timestamp, "Birthday : birthday has passed.");
         return _birthday - bloc.timestamp; 
     }
+
+        // Add getters

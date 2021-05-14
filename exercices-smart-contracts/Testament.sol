@@ -39,6 +39,7 @@ contract Testament {
    }
    modifier contractEnded() {
        require(_endContract == true, "Testament : Owner is still alive");
+       _;
    }
 
     // Function declarations below
@@ -61,3 +62,5 @@ contract Testament {
         payable(msg.sender).sendValue(legacy_);
         emit Withdrawed(msg.sender, legacy_); 
     }
+
+    // Add getters
